@@ -1,10 +1,17 @@
-import React from "react";
-import {Navigate,Route,Routes} from "react-router"
+
+import {BrowserRouter,Navigate,Route,Routes} from "react-router"
 import MainLayout from "./layout/MainLayout"
+import Dashboard from  "./pages/Dashboard"
+import Users from "./pages/Users"
+import Products from "./pages/Product"
+import Orders from "./pages/Orders"
+import Profile from "./pages/Profile"
+import Settings from "./pages/Settings"
 
 function App(){
   return(
     <div>
+      <BrowserRouter>
       <Routes>
 
 
@@ -20,6 +27,10 @@ function App(){
         
         </Route>
       </Routes>
+      </BrowserRouter>
     </div>
   )
 }
+
+
+export default App;``
