@@ -3,10 +3,10 @@ import { navigation } from "../config/navigation"
 import { pageTitles } from "../config/navigation"
 
 
- function Sidebar(){
+ function Sidebar({showSidebar,setShowSidebar}){
     return(
-        <div className="fixed left-0 top-0 z-50 min-h-screen w-64 bg-sidebar-bg text-white transform
-        transition-transform duration-300 ease-in-out">
+        <div className={`fixed left-0 top-0 z-50 min-h-screen w-64 bg-sidebar-bg text-white transform
+        transition-transform duration-300 ease-in-out ${showSidebar?"translate-x-0":"-translate-x-full"}  md:translate-x-0`}>
            
 
          {/* logo */}
@@ -26,14 +26,23 @@ import { pageTitles } from "../config/navigation"
                         <NavLink
                         key={item.path}
                         to={item.path}
-                        className={({isActive})=>`flex items-center gap-3 rounded-lg px-4 py-3 text-sm ${
+                        onClick={()=>setShowSidebar(false)}
+                        className={({isActive})=>`relative flex items-center gap-3 rounded-lg px-4 py-3 text-sm ${
                             isActive
                             ?"bg-sidebar-active-light text-sidebar-text-active"
                             :"text-grey-300 hover:bg-gray-800"
                         }`}
                         >
+                            {/* Indicator */}
+                            {({isActive})=>(
+                                <>
+                            {isActive&&(
+                                <div className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-r-full bg-indigo-500"></div>
+                            )}
                             <item.icon/>
                             <span>{item.label}</span>
+                            </>
+                        )}
                         </NavLink>
                     )}
                 </div>
