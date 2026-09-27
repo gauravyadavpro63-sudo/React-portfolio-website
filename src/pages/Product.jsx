@@ -38,7 +38,7 @@ if(!productData){
     return(
         <div className="p-6 bg-white rounded-xl border border-gray-200">
            <div>
-            <p>User data not available</p>
+            <p>product data not available</p>
            </div>
         </div>
     )
