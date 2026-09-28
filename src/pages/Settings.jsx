@@ -26,6 +26,22 @@ function Settings(){
         setSaved(false);
      }
 
+     const handleSave=()=>{
+        console.log("Settings save:",formData);
+        setSaved(true);
+        setTimeout(()=>{
+            setSaved(false);
+        },3000)
+     }
+
+     const handleReset=()=>{
+        if(settingsData){
+            setFormData(settingsData)
+        }
+
+        setSaved(false);
+     }
+
      const loadSettingData=async()=>{
         setLoading(true)
             try{
@@ -38,7 +54,6 @@ function Settings(){
             finally{
             setLoading(false);
             }
-        
      }
 
      useEffect(()=>{
@@ -61,13 +76,88 @@ if(!settingsData){
            <div>
             <p>Setting  data not available</p>
            </div>
+           {/* general settings */}
+
+          <div className="bg-white border border-gray-200 rounded-2xl shadow-sm">
+            <div className="p-6 border-b border-gray-200">
+                <h3 className="text-base font-medium text-gray-800">General Settings</h3>
+                <p className="text-sm text-gray-400 mt-1">Configure baisc application settings</p>
+            </div>
+            </div> 
         </div>
     )
 }
 
 
     return(
-          <div>
+          <div className="space-y-6">
+            {/* header */}
+
+            <div className="text-xl font-medium text-slate-900">
+                <h2>Settings</h2>
+                <p className="text-sm text-gray-400 mt-1">Manage your application preferences.</p>
+            </div>
+
+
+            {/* general settings */}
+            <div className="bg-white border border-gray-200 rounded-2xl shadow-sm">
+                <div className="p-6 border-b border-gray-200">
+                    <h3 className="text-base font-medium text-gray-800">General Settings</h3>
+                    <p className="text-sm text-gray-400  mt-1">Configure basic application settings</p>
+                </div>
+            </div>
+            
+            <div className="p-6 space-y-6">
+                {/* site name  */}
+               
+               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2 ">Site Name</label>
+                <input type="text" name="siteName" value={formData.siteName} onChange={handleChange} className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm outline-none foxcus:border-indigo-500 focus:ring-2 focus:ring-indigo-100" />
+               </div>
+
+               {/* theme */}
+
+               <div>
+                <label className="block text-sm font-medium text-gray-700  mb-2">Theme</label>
+                <select name="theme" value={formData.theme} onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm outline-none focus:border-indigo-500 
+                    focus:ring-indigo-100">
+                    <option value="Light">Light</option>
+                     <option value="Dark">Dark</option>
+                    <option value="System">System</option>
+
+                </select>
+               </div>
+
+               {/* language */}
+
+               <div>
+                <label className="block text-sm font-medium text-gray-700  mb-2">Language</label>
+                <select name="language" value={formData.language} onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm outline-none focus:border-indigo-500 
+                    focus:ring-indigo-100">
+                    <option value="Hindi">Hindi</option>
+                     <option value="English">English</option>
+
+                </select>
+               </div>
+
+               {/* timezone */}
+
+                     <div>
+                <label className="block text-sm font-medium text-gray-700  mb-2">TimeZone</label>
+                <select name="timezone" value={formData.timezone} onChange={handleChange}
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm outline-none focus:border-indigo-500 
+                    focus:ring-indigo-100">
+                    <option value="Asia">Asia</option>
+                     <option value="Europe">Europe</option>
+                    <option value="USA">USA</option>
+
+                </select>
+               </div>
+
+            </div>
+            
 
           </div>
     )
